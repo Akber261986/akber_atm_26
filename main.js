@@ -3,13 +3,27 @@ import inquirer from "inquirer";
 import chalk from "chalk";
 let balance = 10000;
 let myPin = 4563;
-let user = await inquirer.prompt({ name: "pin", type: "number", message: "Please Enter your Pin Code " });
+let user = await inquirer.prompt({
+    name: "pin",
+    type: "number",
+    message: "Please Enter your Pin Code "
+});
 if (user.pin === myPin) {
     console.log(chalk.green(`Pin Code Accessed`));
-    let options = await inquirer.prompt({ name: "select", type: "list", message: "Please Select an Option.", choices: ['Withdraw', 'Balance inquiry'] });
+    let options = await inquirer.prompt({
+        name: "select",
+        type: "list",
+        message: "Please Select an Option.",
+        choices: ['Withdraw', 'Balance inquiry']
+    });
     if (options.select === 'Withdraw') {
         let choose = await inquirer.prompt([
-            { name: "fastCash", type: "list", message: "Chose Amount for fast Cash or Enter Your amount", choices: ['1000', '2000', '5000', 'Enter'] }
+            {
+                name: "fastCash",
+                type: "list",
+                message: "Chose Amount for fast Cash or Enter Your amount",
+                choices: ['1000', '2000', '5000', 'Enter']
+            }
         ]);
         if (choose.fastCash === '1000') {
             if (choose.fastCash <= balance) {
@@ -42,7 +56,11 @@ if (user.pin === myPin) {
             }
         }
         else {
-            let enterAmount = await inquirer.prompt({ name: "myAmount", type: "number", message: "Enter Your Amount" });
+            let enterAmount = await inquirer.prompt({
+                name: "myAmount",
+                type: "number",
+                message: "Enter Your Amount"
+            });
             if (enterAmount.myAmount <= balance) {
                 balance -= enterAmount.myAmount;
                 console.log(chalk.green("Transiction Successful"));
